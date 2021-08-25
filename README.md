@@ -1,10 +1,10 @@
 ### **Maven Build Lifecycle**
 
 * Maven is based on the concept of build life cycles.
-* Now a lifecycle is going to be a predefined group of steps and these steps are called ***Phases***. 
-* A lifecycle is a group of phases and each phase can be bound to one or more ***Plugin Goals***. 
+* Now a lifecycle is going to be a predefined group of steps and these steps are called ***Phases***.
+* A lifecycle is a group of phases and each phase can be bound to one or more ***Plugin Goals***.
 * Any work that is done in Maven is going to be done by plugins. So basically the life cycle and phases provide a
-framework for us to call plugin goals in a specific sequence. 
+framework for us to call plugin goals in a specific sequence.
 
 This is really how all Maven comes together so it's very important to understand that we have this lifecycle and 
 the lifecycle are gonna be phases and the phases are gonna get bound to plug in goals. This is really the gist of 
@@ -136,3 +136,63 @@ It's very important to understand in summary how these work together. We have th
 phases then allow us to specify one or more plugin goals. The main takeaway is to understand that we do have 3
 standard life cycles within Maven and those life cycles have multiple phases in it and those multiple phases can
 be associated with goals from a variety of different Maven plugins to do work inside of our build.
+
+### **Maven lifecycle plugins**
+* Clean
+    * clean
+
+* Default
+    * compiler:compiler 
+    * compiler:testCompile
+    * resources:resources
+    * resources:testResources
+    * resources:copy-resources
+    * surefire:test
+    * jar:jar
+    * jar:test-jar
+    * deploy:deploy
+    * deploy:deploy-file
+
+* Site
+    * site:site
+    * site:deploy
+    * site:run
+    * site:stage
+    * site:stage-deploy
+    * site:attach-descriptor
+    * site:jar
+    * site:effective-site
+
+### What is plugin binding?
+To start with remember these relationships:
+
+* Lifecycle -has-> Phases
+* Plugins -has-> Goals
+* Phase -is_bound_to-> Goal
+
+This means when you execute a phase, under the hood some goal of some plugin gets executed and things get done.
+Phases by themselves don't do anything. So if a phase is not bounded to a goal of plugin, it does nothing. By 
+default, Maven comes with several phases bounded to goals of plugins.
+
+Maven has three life cycles: 
+* clean
+* default
+* site
+
+Clean lifecycle has three phases: 
+* pre-clean
+* clean
+* post-clean
+
+Now by default, Maven also comes with a clean plugin that has two goals: 
+* clean
+* help
+
+The clean phase -is_bound_to-> clean goal.
+
+It becomes confusing here because all have the same name "clean" But technically, I can say, "The clean phase of 
+the clean lifecycle is bound to the clean goal of the clean plugin"
+
+So when I type **mvn clean**, the following things happen.
+Maven checks the first phase **pre-clean**. As this phase is not bound to any plugin goals, it does nothing. Next, 
+Maven checks the **clean** phase. Maven then executes the bounded **clean goal** of the **clean plugin**.
