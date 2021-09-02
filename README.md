@@ -7,13 +7,13 @@
 framework for us to call plugin goals in a specific sequence.
 
 This is really how all Maven comes together so it's very important to understand that we have this lifecycle and 
-the lifecycle are gonna be phases and the phases are gonna get bound to plug in goals. This is really the gist of 
+the lifecycle are gonna have phases and the phases are gonna get bound to plugin goals. This is really the gist of 
 how Maven is working. So the entire framework of Maven is designed to build or do these builds using plugins. A
 build lifecycle with phases ties everything together for us. 
 
 Out-of-the-box Maven have 3 predefined life cycles.
 1. **Clean** - This does a clean of the project and really moves any build artifacts anything that we've done from our
-working directory. It basically goes in cleans up everything and basically deletes anything that we've compiled 
+working directory. It basically goes in, cleans up everything, and basically deletes anything that we've compiled 
 or generated and usually it's gonna be dealing with by default the ***target directory***. It's gonna delete that and
 anything in that. This is by default defined with plugin binding so that this out of the box Maven has plugin bindings. 
 
